@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>O'zbek Alifbosi</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+    h1 {
+        margin-top: 20px;
+    }
+    .alphabet {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .letter {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .letter:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+    }
+</style>
+</head>
+<body>
+
+<h1>O'zbek Alifbosi</h1>
+<p>Harflarni bosib o'qilishini eshiting</p>
+
+<div class="alphabet" id="alphabet"></div>
+
+<script>
+const letters = [
+"A","B","D","E","F","G","H","I","J","K","L","M","N",
+"O","P","Q","R","S","T","U","V","X","Y","Z",
+"O‘","G‘","Sh","Ch","Ng"
+];
+
+const alphabetDiv = document.getElementById("alphabet");
+
+letters.forEach(letter => {
+    const btn = document.createElement("button");
+    btn.className = "letter";
+    btn.innerText = letter;
+    btn.onclick = () => speakLetter(letter);
+    alphabetDiv.appendChild(btn);
+});
+
+function speakLetter(text) {
+    const speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    speech.lang = "uz-UZ"; 
+    speech.rate = 0.8;
+    window.speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>
